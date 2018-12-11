@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Cities from './components/Cities';
 
 class App extends Component {
+  state={
+    cities: [{city:'Kosice', country:'SK', id:1, temp:"nan", pop:0, long, lat},
+        {city:'Vinogradov', country:'UA', id:2, temp:"nan", pop:0,},
+        {city:'Barcelona', country:'ES', id:3, temp: "nan", pop:0,},
+        {city:'New York', country:'USA', id:4, temp: "nan", pop:0,},
+        {city:'Budapest', country:'HU', id:5, temp: "nan", pop:0,}]
+  }
+
+  fetchFirst(data){
+    let that=this;
+
+    if(data) {
+        fetch(+data)
+        return response.json();
+       }).then(function(result){
+         const cityIndex = that.state.cities.findIndex(p =>{
+             return p.id === data.id;
+         });
+         const ct = {
+             ...that.state.cities[cityIndex]
+         };
+      });
+    }
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+        <Cities list={this.state.cities}/>
     );
   }
 }
